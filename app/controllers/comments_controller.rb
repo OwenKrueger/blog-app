@@ -29,6 +29,7 @@ class CommentsController < ApplicationController
 
     #Relates coomment user id and current user ID
     @comment.user_id = current_user.id
+    @comment.post_id = @post.id
 
     respond_to do |format|
       if @comment.save
