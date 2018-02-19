@@ -19,5 +19,5 @@ class User < ApplicationRecord
 
   #the user object owns many comments
   # If a user is deleted, this will cause a deletion of their comments as well.
-  has_many :comments, dependent: :destory
+  has_many :comments, dependent: :destroy
 end
