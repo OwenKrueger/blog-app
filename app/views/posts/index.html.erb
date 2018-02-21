@@ -3,10 +3,25 @@
 
 <h1>Posts</h1>
 
+<style>
+/*
+ Forgive me father, for I have sinned.
+ Inline styles are an abomination.
+*/
+
+.card-title a{
+  color: white;
+}
+
+.card-title a:hover{
+  color: black;
+}
+</style>
+
 <% @posts.each do |post| %>
 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title"><%= post.title %></h5>
+    <h5 class="card-title"><%= link_to post.title, post %></h5>
     <p class="card-text"><%= post.body %></p>
   </div>
 </div>

@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= @post.title %></h5>
+      <p class="card-text"><%= @post.body %></p>
+    </div>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  <div class="col-12">
+  	 <% @comments.each do |comment| %>
+	  	 <p><%= comment.body %>
+  	 <% end %>
+  </div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %>
+  <%= link_to 'Comment', new_post_comment_path(@post) %>
+</div>
