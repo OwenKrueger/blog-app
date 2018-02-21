@@ -27,8 +27,15 @@
 </div>
 <% end %>
 
-
-<table>
+  <!-- admin account is the first user
+       im the only one cool enough to make blog posts
+       I know I should make a permissions table and do some
+       relational hopscotch but this lab needs to be done.
+   -->
+  <% if user_signed_in? %>
+  <% if current_user.id == 1 %>
+  <%= link_to 'New Post', new_post_path %>
+  <table>
   <thead>
     <tr>
       <th>Title</th>
@@ -36,13 +43,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <!-- admin account is the first user
-       im the only one cool enough to make blog posts
-       I know I should make a permissions table and do some
-       relational hopscotch but this lab needs to be done.
-   -->
-  <% if current_user.id == 1 %>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
@@ -53,16 +53,9 @@
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <% end %>
   </tbody>
   <% end %>
 </table>
-
-
-
-
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
   
 </div>

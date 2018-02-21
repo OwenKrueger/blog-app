@@ -6,18 +6,27 @@
       <p class="card-text"><%= @post.body %></p>
     </div>
   </div>
-
-  <%= link_to 'Edit Post', edit_post_path(@post) %> |
-  <%= link_to 'Back To Index', posts_path %> |
-  <%= link_to 'Create Comment', new_post_comment_path(@post) %>
+  
+  <% if user_signed_in? %>
+  <% if current_user.id == @post.user_id or current_user.id = 1 %>
+    <%= link_to 'Edit Post', edit_post_path(@post) %> |
+    <%= link_to 'Back To Index', posts_path %> |
+    <%= link_to 'Create Comment', new_post_comment_path(@post) %>
+  <% end %>
+  <% end %>
 
   <div class="col-12">
-    <% @comments.each do |comment| %>
+    <% @post.comments.each do |comment| %>
 	  <p>
+	  	<%= user.username(comment.user_id) %>
 	  	<%= comment.body %>
+	  	<% if user_signed_in? %>
 	    <% if current_user.id == comment.user_id or current_user.id = 1 %>
 	  	  <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment) %>
-	  	  <p><%= link_to 'Delete Comment', post_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p> 
+	  	  <%= link_to 'Delete Comment', post_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+	  	  	
+	  </p>
+	    <% end %>
 	    <% end %>
 	  </p>
   	 <% end %>
