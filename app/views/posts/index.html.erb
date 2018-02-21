@@ -37,6 +37,12 @@
     </tr>
   </thead>
 
+  <!-- admin account is the first user
+       im the only one cool enough to make blog posts
+       I know I should make a permissions table and do some
+       relational hopscotch but this lab needs to be done.
+   -->
+  <% if current_user.id == 1 %>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
@@ -48,6 +54,7 @@
       </tr>
     <% end %>
   </tbody>
+  <% end %>
 </table>
 
 
